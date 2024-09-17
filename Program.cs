@@ -85,7 +85,9 @@
 
         public static void Banking()
         {
-
+            string transactionName;
+            double enterCash;
+            double balance = 150;
         }
 
         public static void DoublesRoller()
