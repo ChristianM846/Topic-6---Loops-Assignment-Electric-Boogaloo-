@@ -44,8 +44,6 @@
                     Console.ReadLine();
                     Console.Clear();
                 }
-
-
             }
         }
 
@@ -85,10 +83,125 @@
 
         public static void Banking()
         {
-            string transactionName;
+            string transactionName = "";
             double enterCash;
             double balance = 150;
 
+            while (transactionName != "quit")
+            {
+                Console.WriteLine("Welcome to the Bank of Blorb");
+                Console.WriteLine("Please input you desried transaction:");
+
+                transactionName = Console.ReadLine().Trim().ToLower();
+                Console.WriteLine();
+
+                if (transactionName == "deposit")
+                {
+                    Console.WriteLine("Enter deposit amount:");
+
+                    if (!Double.TryParse(Console.ReadLine().Trim(), out enterCash) || enterCash <= 0)
+                    {
+                        Console.WriteLine("Error! That is not a valid depsoit amount!");
+                        Console.WriteLine("Tranaction canceled. The transaction fee has been applied to your account.");
+
+                        balance -= 0.75;
+
+                        Console.WriteLine($"Your balance is now {balance.ToString("C")}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{enterCash.ToString("C")} has been added to your account.");
+
+                        balance += enterCash - 0.75;
+
+                        Console.WriteLine($"Your account balance (after transaction fee) is now {balance.ToString("C")}");
+                    }
+                }
+                else if (transactionName == "withdrawal")
+                {
+                    Console.WriteLine("Enter amount you wish to withdrawal:");
+
+                    if (!Double.TryParse(Console.ReadLine().Trim(), out enterCash) || enterCash <= 0)
+                    {
+                        Console.WriteLine("Error! That is not a valid depsoit amount!");
+                        Console.WriteLine("Tranaction canceled. The transaction fee has been applied to your account.");
+
+                        balance -= 0.75;
+
+                        Console.WriteLine($"Your balance is now {balance.ToString("C")}");
+                    }
+                    else if (enterCash + 0.75 > balance)
+                    {
+                        Console.WriteLine("Error! Insufficient funds!");
+                        Console.WriteLine("Tranaction canceled. The transaction fee has been applied to your account.");
+
+                        balance -= 0.75;
+
+                        Console.WriteLine($"Your balance is now {balance.ToString("C")}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{enterCash.ToString("C")} has been withdrawn from your account.");
+
+                        balance -= enterCash + 0.75;
+
+                        Console.WriteLine($"Your account balance (after transaction fee) is now {balance.ToString("C")}");
+                    }
+                }
+                else if (transactionName == "bill payment")
+                {
+                    Console.WriteLine("You currently have an outstanding bill to pay.");
+                    Console.WriteLine("Enter payment amount:");
+
+                    if (!Double.TryParse(Console.ReadLine().Trim(), out enterCash) || enterCash <= 0)
+                    {
+                        Console.WriteLine("Error! That is not a valid depsoit amount!");
+                        Console.WriteLine("Tranaction canceled. The transaction fee has been applied to your account.");
+
+                        balance -= 0.75;
+
+                        Console.WriteLine($"Your balance is now {balance.ToString("C")}");
+                    }
+                    else if (enterCash + 0.75 > balance)
+                    {
+                        Console.WriteLine("Error! Insufficient funds!");
+                        Console.WriteLine("Tranaction canceled. The transaction fee has been applied to your account.");
+
+                        balance -= 0.75;
+
+                        Console.WriteLine($"Your balance is now {balance.ToString("C")}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{enterCash.ToString("C")} has been payed.");
+
+                        balance -= enterCash + 0.75;
+
+                        Console.WriteLine($"Your account balance (after transaction fee) is now {balance.ToString("C")}");
+                    }
+                }
+                else if (transactionName == "account balance update" || transactionName == "acu")
+                {
+                    balance -= 0.75;
+                    Console.WriteLine($"Your account balance (after transaction fee) is {balance.ToString("C")}");
+                }
+                else if (transactionName == "quit")
+                {
+                    Console.WriteLine("You have chosen to exit the Bank of Blorb terminal.");
+                    Console.WriteLine("Goodbye.");
+                }
+                else
+                {
+                    Console.WriteLine("That is an invalid input. The transaction fee of $0.75 has been deducted from your account");
+                    balance -= 0.75;
+                    Console.WriteLine($"Your balance is now {balance.ToString("C")}");
+                }
+            }
+
+            Console.WriteLine("Thank you for use the Banking program");
+            Console.WriteLine("Press ENTER to return to the menu:");
+            Console.ReadLine();
+            Console.Clear();
         }
 
         public static void DoublesRoller()
