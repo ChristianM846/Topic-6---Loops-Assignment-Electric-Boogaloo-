@@ -206,6 +206,41 @@
 
         public static void DoublesRoller()
         {
+            Die die1 = new Die();
+            Die die2 = new Die();
+            int rolls = 0;
+
+            Console.WriteLine("Let's roll some dice for doubles!");
+            Console.WriteLine("Press ENTER to role two dice:");
+            Console.ReadLine();
+
+            do
+            {
+                rolls++;
+                die1.RollDie();
+                Console.WriteLine($"Die 1 = {die1}");
+                die1.DrawRoll();
+                Thread.Sleep(800);
+                die2.RollDie();
+                Console.WriteLine($"Die 2 = {die2}");
+                die2.DrawRoll();
+                Console.WriteLine();
+
+                if (die1.Roll != die2.Roll)
+                {
+                    Console.WriteLine("Not doubles, let's try again.");
+                    Console.WriteLine("Press ENTER to roll the dice again:");
+                    Console.ReadLine();
+                }
+            } while (die1.Roll != die2.Roll);
+
+            Console.WriteLine($"{die1} and {die2}, DOUBLES!");
+            Console.WriteLine($"And it only took {rolls} tries.");
+            Console.WriteLine();
+            Console.WriteLine("Thank you for use the Doubles Roller program");
+            Console.WriteLine("Press ENTER to return to the menu:");
+            Console.ReadLine();
+            Console.Clear();
 
 
         }
